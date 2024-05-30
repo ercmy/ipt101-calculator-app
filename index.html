@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+
+<style>
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: white;
+    }
+
+    #result {
+        width: 350px;
+        height: 50px;
+        padding: 10px;
+        border: 6px groove;
+        font-size: xx-large;
+        color: white;
+        font-weight: 100;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .calculator {
+        background: #2c2c2c;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        width: 380px;
+    }
+
+    .numbtn {
+        width: 80px;
+        height: 80px;
+        padding: 10px;
+        margin: 6px;
+        cursor: pointer;
+        border-radius: 30%;
+        border: 2px solid black;
+        font-size: x-large;
+    }
+
+    .nne {
+        width: 80px;
+        height: 80px;
+        padding: 10px;
+        margin: 6px;
+        background-color: #2c2c2c;
+        border-style: none;
+        color: #2c2c2c;
+
+    }
+
+    .op {
+        width: 80px;
+        height: 80px;
+        padding: 10px;
+        margin: 6px;
+        cursor: pointer;
+        border-radius: 30%;
+        border: 2px solid black;
+        font-size: x-large;
+        background-color: #c08d00;
+
+    }
+
+    .numbtn:hover {
+        background: #77828f;
+    }
+
+    .op:hover {
+        background: #77828f;
+    }
+
+
+
+    @media (max-width: 380px) {
+    .calculator {
+        width: 90%;
+        height: 80%;
+    }
+
+    .numbtn, .nne, .op {
+        width: 62px;
+        height: 60px;
+        padding: 5px;
+        margin: 6px;
+        font-size: 16px;
+    }
+
+    #result {
+        font-size: 35px;
+        height: 115px;
+        width: 280px;
+    }
+}
+    
+
+
+
+    
+</style>
+
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="result" disabled>
+    <br>
+    <input type="button" value="C" onclick="clearInput()" class="op">
+    <input type="button" value="DEL" onclick="deleteNatin()" class="op">
+    <input type="button" value="/" onclick="divide()" class="op">
+    <input type="button" value="*" onclick="multiply()" class="op">
+    <br>
+    <input type="button" value="7" onclick="appendNumber(7)" class="numbtn">
+    <input type="button" value="8" onclick="appendNumber(8)" class="numbtn">
+    <input type="button" value="9" onclick="appendNumber(9)" class="numbtn">
+    <input type="button" value="-" onclick="minus()" class="op">
+    <br>
+    <input type="button" value="4" onclick="appendNumber(4)" class="numbtn">
+    <input type="button" value="5" onclick="appendNumber(5)" class="numbtn">
+    <input type="button" value="6" onclick="appendNumber(6)" class="numbtn">
+    <input type="button" value="+" onclick="add()" class="op">
+    <br>
+    <input type="button" value="1" onclick="appendNumber(1)" class="numbtn">
+    <input type="button" value="2" onclick="appendNumber(2)" class="numbtn">
+    <input type="button" value="3" onclick="appendNumber(3)" class="numbtn">
+    <input type="button" value="=" onclick="calculate()" class="op">
+    <br>
+    <input type="button" value="." class="nne">
+    <input type="button" value="0" onclick="appendNumber(0)" class="numbtn">
+    <input type="button" value="." onclick="addDecimal()" class="op">
+    <input type="button" value="." class="nne">
+    </div>
+
+    <script>
+        let currentInput = '';
+        let currentOperator = '';
+
+        function appendNumber(number) {
+            currentInput += number;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function add() {
+            currentOperator = '+';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function divide() {
+            currentOperator = '/';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function multiply() {
+            currentOperator = '*';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function minus() {
+            currentOperator = '-';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function calculate() {
+            const result = eval(currentInput);
+            document.getElementById('result').value = result;
+            currentInput = result.toString();
+            currentOperator = '';
+        }
+
+        function clearInput() {
+            currentInput = '';
+            currentOperator = '';
+            document.getElementById('result').value = '';
+        }
+
+        function deleteNatin() {
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById('result').value = currentInput;
+        }
+
+        function addDecimal() {
+            if (currentInput.indexOf('.') === 0, -1) {
+                currentInput += '.';
+                document.getElementById('result').value = currentInput;
+            }
+        }
+
+
+    </script>
+</body>
+</html>
